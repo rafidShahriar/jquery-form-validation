@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>JQuery Form Validation</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      #reg_form{ margin-top: 50px; }
+      label.error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3" id="reg_form">
+          <form id="regForm" method="post" action="">
+            <div class="form-group">
+              <label for="name">Student Name:</label>
+              <input type="text" name="name" class="form-control" id="name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email address:</label>
+              <input type="email" name="email" class="form-control" id="email">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Password:</label>
+              <input type="password" name="password" class="form-control" id="password">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Confirm Password:</label>
+              <input type="password" name="confirm_password" class="form-control" id="confirm_password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#regForm").validate({
+          rules: {
+          name: {
+          required: true,
+          minlength: 5,
+          maxlength: 11
+        },
+          email: {
+          required: true,
+          email: true
+        },
+          password: {
+          required: true,
+          minlength: 5
+        },
+          confirm_password: {
+          required: true,
+          minlength: 5,
+          equalTo: "#password"
+        }
+          },
+          messages: {
+            name: {
+            required: "Please enter a username",
+            minlength: "Your username must consist of at least 5 characters",
+            maxlength: "Your username must be within 11 characters"
+        },
+        email: "Please enter a valid email address",
+        password: {
+            required: "Please provide a password",
+            minlength: "Your password must be at least 5 characters long"
+        },
+        confirm_password: {
+            required: "Please provide a password",
+            minlength: "Your password must be at least 5 characters long",
+            equalTo: "Please enter the same password as above"
+        }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
